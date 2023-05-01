@@ -27,13 +27,12 @@ playButton.addEventListener("click", function startGame() {
 } )
 // Creo un bottone che inserisce in un array
 let takeUserNumbers = document.getElementById("takeUserNumbers")
-let punteggioFinale = document.getElementById("punteggio")
 let userNumbersArray = []
+let score = 0
 // if (userNumbersArray.length < 5){
     takeUserNumbers.addEventListener("click", function insertNumbers() {
         let inputNumber = document.getElementById("inputNumber")
         let verifyInputNumber = false
-        let punteggio = 0
         inputNumber = inputNumber.value
         userNumbersArray.push(inputNumber)
         for (let i = 0; i < randomNumbersArray.length; i++) {
@@ -44,15 +43,13 @@ let userNumbersArray = []
         }
         if (verifyInputNumber === true){
             timedBox.innerHTML += `<p class= "textGreen"> ${inputNumber} </p>` 
-            punteggio = punteggio+1
+            score = score+1
     
         }else if(verifyInputNumber === false) {
             timedBox.innerHTML += `<p class= "textRed"> ${inputNumber} </p>` 
     
         }
-        if (userNumbersArray.length == 5){
-        timedBox.innerHTML = `<p id="punteggio" class="alignSelfEnd">Il tuo punteggio:${punteggio} </p>`
-        }
+        
         // if (userNumbersArray.length > 4) {
         //     for (let i = 0; i < userNumbersArray.length; i++) {
         //     const userNumber = userNumbersArray[i];
@@ -60,7 +57,9 @@ let userNumbersArray = []
             
         // }
         // }
-        
+        if (userNumbersArray.length > 4){
+            timedBox.innerHTML += `<p id="score" class="positionAbsolute">Il tuo punteggio:${score} </p>`
+            }
     })
 
 // }
