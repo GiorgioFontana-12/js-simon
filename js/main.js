@@ -15,13 +15,7 @@ let timedBox = document.getElementById("timedBox")
 let playButton = document.getElementById("startButton")
 playButton.addEventListener("click", function startGame() {
     timedBox.innerHTML = "";
-    // while (randomNumbersArray.length < 5) {
-    //     let randomNumber = Math.floor(Math.random() * 1000);
-    //     if (randomNumbersArray.includes(randomNumber)) {
-    //     }else{
-    //         randomNumbersArray.push(randomNumber)
-    //     }
-    // }
+    userNumbersArray = []
     randomNumbersArray=[]
     randomNumbers()
     for (let i = 0; i < randomNumbersArray.length; i++) {
@@ -32,5 +26,42 @@ playButton.addEventListener("click", function startGame() {
     // timedBox.innerHTML = (randomNumbersArray)
 } )
 // Creo un bottone che inserisce in un array
+let takeUserNumbers = document.getElementById("takeUserNumbers")
+let punteggioFinale = document.getElementById("punteggio")
+let userNumbersArray = []
+// if (userNumbersArray.length < 5){
+    takeUserNumbers.addEventListener("click", function insertNumbers() {
+        let inputNumber = document.getElementById("inputNumber")
+        let verifyInputNumber = false
+        let punteggio = 0
+        inputNumber = inputNumber.value
+        userNumbersArray.push(inputNumber)
+        for (let i = 0; i < randomNumbersArray.length; i++) {
+            const randomNumber = randomNumbersArray[i];
+            if (inputNumber == randomNumber) {
+                verifyInputNumber = true
+            }
+        }
+        if (verifyInputNumber === true){
+            timedBox.innerHTML += `<p class= "textGreen"> ${inputNumber} </p>` 
+            punteggio = punteggio+1
+    
+        }else if(verifyInputNumber === false) {
+            timedBox.innerHTML += `<p class= "textRed"> ${inputNumber} </p>` 
+    
+        }
+        if (userNumbersArray.length == 5){
+        timedBox.innerHTML = `<p id="punteggio" class="alignSelfEnd">Il tuo punteggio:${punteggio} </p>`
+        }
+        // if (userNumbersArray.length > 4) {
+        //     for (let i = 0; i < userNumbersArray.length; i++) {
+        //     const userNumber = userNumbersArray[i];
+        //     timedBox.innerHTML += `<p> ${userNumber} </p>`
+            
+        // }
+        // }
+        
+    })
 
+// }
 // All'inserimento del quinto numero verifico
