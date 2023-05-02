@@ -9,11 +9,16 @@ function randomNumbers() {
         }
     }
 }
+function coverNumber() {
+    timedBox.innerHTML += `<div id="showNumber" class="coverNumber"></div>`
+    
+}
 
 // Creo un bottone che trigghera la funzione e mi restituisce i numeri a schermo per 30 secondi
 let timedBox = document.getElementById("timedBox")
 let playButton = document.getElementById("startButton")
 playButton.addEventListener("click", function startGame() {
+    setTimeout(coverNumber, 3 * 1000)
     timedBox.innerHTML = "";
     userNumbersArray = []
     randomNumbersArray=[]
@@ -23,14 +28,15 @@ playButton.addEventListener("click", function startGame() {
         timedBox.innerHTML += `<p> ${randomNumber} </p>`
         console.log(randomNumber)
     }
+    score = 0
     // timedBox.innerHTML = (randomNumbersArray)
 } )
 // Creo un bottone che inserisce in un array
+let score = 0
 let takeUserNumbers = document.getElementById("takeUserNumbers")
 let userNumbersArray = []
-let score = 0
-// if (userNumbersArray.length < 5){
-    takeUserNumbers.addEventListener("click", function insertNumbers() {
+takeUserNumbers.addEventListener("click", function insertNumbers() {
+if (userNumbersArray.length < randomNumbersArray.length){
         let inputNumber = document.getElementById("inputNumber")
         let verifyInputNumber = false
         inputNumber = inputNumber.value
@@ -57,10 +63,11 @@ let score = 0
             
         // }
         // }
-        if (userNumbersArray.length > 4){
-            timedBox.innerHTML += `<p id="score" class="positionAbsolute">Il tuo punteggio:${score} </p>`
+        if (userNumbersArray.length == 5){
+            timedBox.innerHTML += `<p id="score" class="positionAbsoluteScore">Il tuo punteggio:${score} </p>`
+            document.getElementById("showNumber").classList.remove("coverNumber");
             }
+        }
     })
 
-// }
 // All'inserimento del quinto numero verifico
