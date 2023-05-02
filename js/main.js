@@ -19,6 +19,7 @@ let timedBox = document.getElementById("timedBox")
 let playButton = document.getElementById("startButton")
 playButton.addEventListener("click", function startGame() {
     setTimeout(coverNumber, 3 * 1000)
+    setTimeout(startPlayerInput, 3 * 1000)
     timedBox.innerHTML = "";
     userNumbersArray = []
     randomNumbersArray=[]
@@ -35,39 +36,42 @@ playButton.addEventListener("click", function startGame() {
 let score = 0
 let takeUserNumbers = document.getElementById("takeUserNumbers")
 let userNumbersArray = []
-takeUserNumbers.addEventListener("click", function insertNumbers() {
-if (userNumbersArray.length < randomNumbersArray.length){
-        let inputNumber = document.getElementById("inputNumber")
-        let verifyInputNumber = false
-        inputNumber = inputNumber.value
-        userNumbersArray.push(inputNumber)
-        for (let i = 0; i < randomNumbersArray.length; i++) {
-            const randomNumber = randomNumbersArray[i];
-            if (inputNumber == randomNumber) {
-                verifyInputNumber = true
+function startPlayerInput() {
+    takeUserNumbers.addEventListener("click", function insertNumbers() {
+    if (userNumbersArray.length < randomNumbersArray.length){
+            let inputNumber = document.getElementById("inputNumber")
+            let verifyInputNumber = false
+            inputNumber = inputNumber.value
+            userNumbersArray.push(inputNumber)
+            for (let i = 0; i < randomNumbersArray.length; i++) {
+                const randomNumber = randomNumbersArray[i];
+                if (inputNumber == randomNumber) {
+                    verifyInputNumber = true
+                }
             }
-        }
-        if (verifyInputNumber === true){
-            timedBox.innerHTML += `<p class= "textGreen"> ${inputNumber} </p>` 
-            score = score+1
-    
-        }else if(verifyInputNumber === false) {
-            timedBox.innerHTML += `<p class= "textRed"> ${inputNumber} </p>` 
-    
-        }
+            if (verifyInputNumber === true){
+                timedBox.innerHTML += `<p class= "textGreen"> ${inputNumber} </p>` 
+                score = score+1
         
-        // if (userNumbersArray.length > 4) {
-        //     for (let i = 0; i < userNumbersArray.length; i++) {
-        //     const userNumber = userNumbersArray[i];
-        //     timedBox.innerHTML += `<p> ${userNumber} </p>`
-            
-        // }
-        // }
-        if (userNumbersArray.length == 5){
-            timedBox.innerHTML += `<p id="score" class="positionAbsoluteScore">Il tuo punteggio:${score} </p>`
-            document.getElementById("showNumber").classList.remove("coverNumber");
+            }else if(verifyInputNumber === false) {
+                timedBox.innerHTML += `<p class= "textRed"> ${inputNumber} </p>` 
+        
             }
-        }
-    })
+            
+            // if (userNumbersArray.length > 4) {
+            //     for (let i = 0; i < userNumbersArray.length; i++) {
+            //     const userNumber = userNumbersArray[i];
+            //     timedBox.innerHTML += `<p> ${userNumber} </p>`
+                
+            // }
+            // }
+            if (userNumbersArray.length == 5){
+                timedBox.innerHTML += `<p id="score" class="positionAbsoluteScore">Il tuo punteggio:${score} </p>`
+                document.getElementById("showNumber").classList.remove("coverNumber");
+                }
+            }
+        })
+    
+}
 
 // All'inserimento del quinto numero verifico
