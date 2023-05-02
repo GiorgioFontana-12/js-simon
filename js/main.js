@@ -18,8 +18,8 @@ function coverNumber() {
 let timedBox = document.getElementById("timedBox")
 let playButton = document.getElementById("startButton")
 playButton.addEventListener("click", function startGame() {
-    setTimeout(coverNumber, 3 * 1000)
-    setTimeout(startPlayerInput, 3 * 1000)
+    setTimeout(coverNumber, 30 * 1000)
+    setTimeout(startPlayerInput, 30 * 1000)
     timedBox.innerHTML = "";
     userNumbersArray = []
     randomNumbersArray=[]
